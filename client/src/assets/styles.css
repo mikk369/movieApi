@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+body,
+html {
+  background: rgb(16, 20, 20);
+  background: linear-gradient(
+    180deg,
+    rgba(16, 20, 20, 1) 0%,
+    rgba(33, 43, 42, 1) 99%
+  );
+  width: 100%;
+  min-height: 100vh;
+  color: white;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 30px;
+}
+
+.logo {
+  font-size: 50px;
+  padding: 10px;
+}
+
+.nav-links {
+  padding: 28px 0;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  padding: 5px 0;
+}
+
+
+.btn {
+  background: #ff3d00;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+#input-field {
+  padding: 10px;
+  background-color: white;
+  border-radius: 9px;
+}
+.submit-button {
+  padding: 10px 10px;
+  cursor: pointer;
+  background-color: rgb(68, 45, 45);
+  border-radius: 9px;
+  margin-left: 3px;
+}
+
+.lower-card{
+  border-radius: 0 0 5px 5px;
+  width: 200px;
+  font-size: 15px;
+  color: white;
+  height: 50px;
+}
+
+.lower-card h4,
+p {
+  margin-left: 10px;
+  align-self: normal;
+}
+
+.card {
+  width: 200px;
+  height: 360px;
+  border: 1px solid rgb(148, 147, 147);
+  border-radius: 9px;
+  position: relative;
+  background: rgb(16, 20, 20);
+  background: linear-gradient(
+    180deg,
+    rgba(16, 20, 20, 1) 0%,
+    rgba(53, 68, 66, 1) 99%
+  );
+  margin-right: 9px;
+  margin-bottom: 30px;
+}
+
+.card img {
+  border-radius: 9px 9px 0px 0px;
+  width: 100%;
+}
+
+.card-container {
+  margin-top: 30px;
+  /* display: flex; */
+
+  /* justify-content: space-around; */
+  padding: 60px;
+}
+
+.movie-rows {
+  padding-left: 3px;
+}
+
