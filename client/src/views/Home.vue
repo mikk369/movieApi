@@ -41,6 +41,7 @@
 import Header from './Header.vue';
 import Card from './Card.vue';
 import API from '../api';
+import axios from 'axios';
 
 export default {
   name: 'Home',
@@ -48,6 +49,14 @@ export default {
     return {
       posts: [],
     };
+  },
+  async created() {
+    const response = await axios.get('user', {
+      headers: {
+        Authorization: 'Bearer' + localStorage.getItem('token'),
+      },
+    });
+    console.log(response);
   },
   async created() {
     this.posts = await API.getAllPosts();
