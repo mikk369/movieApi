@@ -103,8 +103,11 @@
                   password: this.password,
                   passwordConfirm: this.passwordConfirm,
                 };
-
-                axios.post("http://localhost:8080/signup",data)
+                const header = {
+        "Content-Type": "application/json",
+        "Accept": "*/*"
+    }
+                axios.post("http://127.0.0.1:8000/api/users/signup",data,header)
                 .then(
                     res => {
                       console.log(res)
