@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const postApi = require('../controllers/postApi');
 const multer = require('multer');
-const authController = require("./../controllers/authController") 
+const authController = require('./../controllers/authController');
 
 // // multer middleware
 let storage = multer.diskStorage({
@@ -18,12 +18,15 @@ let upload = multer({
   storage: storage,
 }).single('image');
 
-router.route('/').get( postApi.getAllPosts).post(upload, postApi.createPost);
+router
+  .route('/')
+  .get(postApi.getAllPosts)
+  .post(authController.protect, upload, postApi.createPost);
 
 router
   .route('/:id')
-  .get(postApi.getPostById)
-  .patch(upload, postApi.updatePost)
-  .delete(postApi.deletePost);
+  .get(authController.protect, postApi.getPostById)
+  .patch(authController.protect, upload, postApi.updatePost)
+  .delete(authController.protect, postApi.deletePost);
 
 module.exports = router;
