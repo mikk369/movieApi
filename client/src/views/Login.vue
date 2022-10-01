@@ -98,8 +98,6 @@ export default {
           password: this.password,
         });
         localStorage.setItem("token", response.data.token);
-
-
       this.$router.push("/");
     },
   },
