@@ -27,7 +27,7 @@
     <form id="form">
       <h3 class="loginTag">Login</h3>
       <div class="emailInput">
-        <input id="email" type="email" v-model="email" placeholder="Email" />
+        <input id="email" type="text" v-model="email" placeholder="Email" />
       </div>
 
       <div class="passwordInput">
@@ -41,7 +41,7 @@
 
       <button
         class="inputSubmitButton btn btn-primary btn-block"
-        @submit.prevent="submitLogin"
+        v-on:click.prevent="submitLogin"
       >
         login
       </button>
@@ -96,9 +96,11 @@ export default {
         {
           email: this.email,
           password: this.password,
-        }
-      );
-      console.log(response);
+        });
+        localStorage.setItem("token", response.data.token);
+
+
+      this.$router.push("/");
     },
   },
 };
