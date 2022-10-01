@@ -61,10 +61,10 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 });
 
 exports.getUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!'
-  });
+  User.findById(req.params.id).then(userFound => {
+    if (!userFound) { return res.status(404).end();}
+    return res.status(200).json(userFound)
+  }).catch(err => next(err));
 };
 exports.createUser = (req, res) => {
   res.status(500).json({
