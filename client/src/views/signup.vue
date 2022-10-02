@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     async submitSignUp() {
-      await axios.post('http://127.0.0.1:8000/api/users/signup', {
+      await axios.post('http://localhost:8000/api/users/signup', {
         email: this.email,
         password: this.password,
         passwordConfirm: this.passwordConfirm,
