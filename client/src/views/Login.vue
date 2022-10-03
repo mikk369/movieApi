@@ -96,9 +96,10 @@ export default {
         {
           email: this.email,
           password: this.password,
-        });
-        localStorage.setItem("token", response.data.token);
-      this.$router.push("/");
+        }
+      );
+      localStorage.setItem('token', response.data.token);
+      this.$router.push('/');
     },
   },
 };
