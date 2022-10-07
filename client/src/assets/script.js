@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let data = await response.json();
 
       //clear old
-      document.getElementsByClassName('row').innerHTML = '';
+      // document.getElementsByClassName('row').innerHTML = '';
 
       //loop over response
 
@@ -43,11 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
         //add movieContainer to movie-div
         const rowElement = document.getElementsByClassName('row');
         rowElement[0].appendChild(movieContainer);
+        //saves movie to localstorage
+          localStorage.setItem("movies", JSON.stringify(movie));
       });
     } catch (error) {
       console.log('Error', error);
     }
   }
+let movies = JSON.parse(localStorage.getItem("movies"));
+// console.log(movies)
+// TODO:create function to make new cards with the localstorage data
+
 
   //  add listeners to search button
   const submitButton = document.getElementsByClassName('submit-button');
