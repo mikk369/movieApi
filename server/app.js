@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
 const cookieParser = require("cookie-parser")
+
+
 const postRoutes = require('./routes/postRoutes');
 const userRoutes = require('./routes/userRoutes');
 
@@ -12,6 +15,7 @@ app.use(cookieParser());
 const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('uploads'));
 // Test middleware

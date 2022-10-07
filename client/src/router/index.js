@@ -4,13 +4,12 @@ import Home from '../views/Home.vue';
 import addMovie from '../views/addMovie.vue';
 import Post from '../views/Post.vue';
 import signup from '../views/signup.vue';
-import login from '../views/Login.vue';
+import Login from '../views/Login.vue';
 import Header from '../views/Header.vue';
 import EditPost from '../views/EditPost.vue';
 Vue.use(VueRouter);
 
 Vue.component('Header', Header);
-
 
 const routes = [
   {
@@ -31,7 +30,7 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: login,
+    component: Login,
   },
   {
     path: '/edit-post/:id',
