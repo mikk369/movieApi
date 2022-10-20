@@ -44,16 +44,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const rowElement = document.getElementsByClassName('row');
         rowElement[0].appendChild(movieContainer);
         //saves movie to localstorage
-          localStorage.setItem("movies", JSON.stringify(movie));
+        localStorage.setItem("movies", JSON.stringify(data.Search));
+        
       });
     } catch (error) {
       console.log('Error', error);
     }
   }
-let movies = JSON.parse(localStorage.getItem("movies"));
-// console.log(movies)
-// TODO:create function to make new cards with the localstorage data
+  const movieArr = [];
+  let movies = JSON.parse(localStorage.getItem("movies"));
+  // console.log(movies)
+  for(let i = 0 ; i< movies.length; i++){
+    movieArr.push(movies[i])
+  }
+  console.log(movieArr)
+// rendering movies from localstorage 
+const movieContainer = document.createElement('div');
+        //give it a classname
+        movieContainer.classList.add('card');
 
+        //create innerHtml for div
+        movieContainer.innerHTML = `
+        <div class="card-box">
+              <img
+                class="poster"
+                src="${movieArr.Poster}"
+                alt="Avatar"
+                height="300" width="200"
+              />
+              <div class="lower-card">
+              <h4 class="movie-name"><b>${movieArr.Title}</b></h4>
+                <p class="year">${movieArr.Year}</p>
+              </div>
+            </div> `;
+
+        //add movieContainer to movie-div
+        const rowElement = document.getElementsByClassName('row');
+        rowElement[0].appendChild(movieContainer)
 
   //  add listeners to search button
   const submitButton = document.getElementsByClassName('submit-button');
