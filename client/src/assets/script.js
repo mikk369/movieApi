@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //add movieContainer to movie-div
         const rowElement = document.getElementsByClassName('row');
         rowElement[0].appendChild(movieContainer);
-        //saves movie to localstorage
+        //saves movie to localstorage and converts to string
         localStorage.setItem("movies", JSON.stringify(data.Search));
         
       });
@@ -51,36 +51,41 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Error', error);
     }
   }
+  //movies array from localstorage
   const movieArr = [];
+  //gets items from localstorage and parses back to JSON 
   let movies = JSON.parse(localStorage.getItem("movies"));
-  // console.log(movies)
+  //loops over the items from localstorage and pushes to array
   for(let i = 0 ; i< movies.length; i++){
     movieArr.push(movies[i])
   }
-  console.log(movieArr)
-// rendering movies from localstorage 
-const movieContainer = document.createElement('div');
-        //give it a classname
-        movieContainer.classList.add('card');
+  // console.log(movieArr)
+  movieArr.forEach((newMovies)=> {
 
-        //create innerHtml for div
-        movieContainer.innerHTML = `
-        <div class="card-box">
-              <img
-                class="poster"
-                src="${movieArr.Poster}"
-                alt="Avatar"
-                height="300" width="200"
-              />
-              <div class="lower-card">
-              <h4 class="movie-name"><b>${movieArr.Title}</b></h4>
-                <p class="year">${movieArr.Year}</p>
-              </div>
-            </div> `;
-
-        //add movieContainer to movie-div
-        const rowElement = document.getElementsByClassName('row');
-        rowElement[0].appendChild(movieContainer)
+    // rendering movies from localstorage 
+    const movieContainer = document.createElement('div');
+            //give it a classname
+            movieContainer.classList.add('card');
+    
+            //create innerHtml for div
+            movieContainer.innerHTML = `
+            <div class="card-box">
+                  <img
+                    class="poster"
+                    src="${newMovies.Poster}"
+                    alt="Avatar"
+                    height="300" width="200"
+                  />
+                  <div class="lower-card">
+                  <h4 class="movie-name"><b>${newMovies.Title}</b></h4>
+                    <p class="year">${newMovies.Year}</p>
+                  </div>
+                </div> `;
+    
+            //add movieContainer to movie-div
+            const rowElement = document.getElementsByClassName('row');
+            rowElement[0].appendChild(movieContainer)
+  })
 
   //  add listeners to search button
   const submitButton = document.getElementsByClassName('submit-button');
