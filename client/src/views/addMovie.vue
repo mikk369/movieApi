@@ -124,6 +124,17 @@ export default {
         });
       }
     },
+    created: function() {
+      console.log("Submitting form");
+      this.submitForm = new WebSocket("wss://localhost:8080/addMovie")
+      this.submitForm.onopen = function(event) {
+        console.log(event)
+        console.log("Successfully connected to the echo websocket Server");
+      }
+      this.submitForm.onmessage = function (event) {
+        console.log(event)
+      }
+  },
   },
 };
 </script>

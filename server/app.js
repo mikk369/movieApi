@@ -4,20 +4,37 @@ const cors = require('cors');
 const cookieParser = require("cookie-parser")
 const postRoutes = require('./routes/postRoutes');
 const userRoutes = require('./routes/userRoutes');
+const app = express();
+
+const webSocket = require("ws")
+const server = require("http").createServer(app);
+
+const wss = new webSocket.Server({ server: server });
+//gets triggered when new client connects
+wss.on('connection', function connection(ws) {
+  console.log("a new client connected");
+  ws.send('welcome new client');
+
+//when server recives message from client
+  ws.on('message', function message(data) {
+    console.log('received: %s', data);
+    ws.send("got your msg its: " + message )
+  });
+});
 
 require('dotenv').config();
 
-const app = express();
 app.use(cookieParser());
 const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('uploads'));
+
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 });
 

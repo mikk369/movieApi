@@ -41,13 +41,13 @@
 import Header from './Header.vue';
 import Card from './Card.vue';
 import API from '../api';
-import axios from 'axios';
 
 export default {
   name: 'Home',
   data() {
     return {
       posts: [],
+      connection: null
     };
   },
 
@@ -55,6 +55,7 @@ export default {
   async created() {
     this.posts = await API.getAllPosts();
   },
+ 
   components: { Header, Card },
 };
 </script>
