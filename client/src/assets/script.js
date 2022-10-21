@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     movieArr.push(movies[i])
   }
   // console.log(movieArr)
-  movieArr.forEach((newMovies)=> {
+  movieArr.forEach((localMovies)=> {
 
     // rendering movies from localstorage 
     const movieContainer = document.createElement('div');
@@ -72,13 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card-box">
                   <img
                     class="poster"
-                    src="${newMovies.Poster}"
+                    src="${localMovies.Poster}"
                     alt="Avatar"
                     height="300" width="200"
                   />
                   <div class="lower-card">
-                  <h4 class="movie-name"><b>${newMovies.Title}</b></h4>
-                    <p class="year">${newMovies.Year}</p>
+                  <h4 class="movie-name"><b>${localMovies.Title}</b></h4>
+                    <p class="year">${localMovies.Year}</p>
                   </div>
                 </div> `;
     
