@@ -7,10 +7,10 @@ const cookieParser = require("cookie-parser")
 
 const postRoutes = require('./routes/postRoutes');
 const userRoutes = require('./routes/userRoutes');
+const app = express();
 
 require('dotenv').config();
 
-const app = express();
 app.use(cookieParser());
 const port = process.env.PORT || 8000;
 app.use(cors());
@@ -18,13 +18,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('uploads'));
+
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 });
-
+//DB connection 
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.PASSWORD);
 mongoose.connect(DB, {
   useNewUrlParser: true,
