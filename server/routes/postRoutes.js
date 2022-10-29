@@ -20,15 +20,12 @@ let upload = multer({
 
 router.use(authController.isLoggedIn);
 
-router
-  .route('/')
-  .get(postApi.getAllPosts)
-  .post(authController.protect,upload, postApi.createPost);
+router.route('/').get(postApi.getAllPosts).post(upload, postApi.createPost);
 
 router
   .route('/:id')
-  .get(authController.protect,postApi.getPostById)
-  .patch(authController.protect,upload, postApi.updatePost)
-  .delete(authController.protect,postApi.deletePost);
+  .get(postApi.getPostById)
+  .patch(upload, postApi.updatePost)
+  .delete(postApi.deletePost);
 
 module.exports = router;
