@@ -18,15 +18,17 @@ let upload = multer({
   storage: storage,
 }).single('image');
 
+router.use(authController.isLoggedIn);
+
 router
   .route('/')
   .get(postApi.getAllPosts)
-  .post(upload, postApi.createPost);
+  .post(authController.protect,upload, postApi.createPost);
 
 router
   .route('/:id')
-  .get(postApi.getPostById)
-  .patch(upload, postApi.updatePost)
-  .delete(postApi.deletePost);
+  .get(authController.protect,postApi.getPostById)
+  .patch(authController.protect,upload, postApi.updatePost)
+  .delete(authController.protect,postApi.deletePost);
 
 module.exports = router;

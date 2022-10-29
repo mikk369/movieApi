@@ -23,26 +23,23 @@
     </head>
 
     <Header></Header>
-
-    <form id="form">
+    <form id="form" @submit.prevent="submitLogin">
       <h3 class="loginTag">Login</h3>
       <div class="emailInput">
-        <input id="email" type="text" v-model="email" placeholder="Email" />
+        <input id="email" type="text"  placeholder="Email" v-model="email" />
       </div>
 
       <div class="passwordInput">
         <input
           id="password"
           type="password"
-          v-model="password"
           placeholder="password"
+          v-model="password"
         />
       </div>
 
-      <button
-        class="inputSubmitButton btn btn-primary btn-block"
-        v-on:click.prevent="submitLogin"
-      >
+      <button 
+        class="inputSubmitButton btn btn-primary btn-block">
         login
       </button>
     </form>
@@ -78,7 +75,6 @@ input {
   top: 34%;
 }
 </style>
-
 <script>
 import axios from 'axios';
 export default {
@@ -93,13 +89,15 @@ export default {
     async submitLogin() {
       
       const response = await axios.post(
-        'http://localhost:8000/api/users/login',
+        'http://localhost:8000/api/users/login',  
         {
           email: this.email,
           password: this.password,
         });
-        // localStorage.setItem("token", response.data.token);
-        console.log(response)
+        localStorage.setItem("token", response.data.token);
+        this.userEmail = response.data.data.user.email 
+        localStorage.setItem("user", response.data.user.email);
+        // console.log(userEmail)
       this.$router.push("/");
     },
   },

@@ -3,7 +3,7 @@
 
 
 // const login = async (email, password ) => {
-//     console.log(email,password)
+//     alert(email,password)
 // // try {
 // //     const res = await axios({
 // //         methods: "POST",
@@ -24,7 +24,7 @@
 //        e.preventDefault();
 //        const email = document.getElementById("email").value;
 //         const password = document.getElementById("password").value;
-//         login({email,password});
+//         login(email,password);
 //     });   
 
     

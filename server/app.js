@@ -2,17 +2,20 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require("cookie-parser")
+
+const app = express();
+
+
 const postRoutes = require('./routes/postRoutes');
 const userRoutes = require('./routes/userRoutes');
-const app = express();
 
 require('dotenv').config();
 
-app.use(cookieParser());
 const port = process.env.PORT || 8000;
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.static('uploads'));
 
 // Test middleware
