@@ -37,25 +37,22 @@
   </html>
 </template>
 
-<script >
-
+<script>
 import Header from './Header.vue';
 import Card from './Card.vue';
 import API from '../api';
-import axios from "axios"
+import axios from 'axios';
 export default {
   name: 'Home',
   data() {
     return {
       posts: [],
-      connection: null,
     };
   },
   components: { Header, Card },
- 
+
   async created() {
     this.posts = await API.getAllPosts();
   },
- 
 };
 </script>
