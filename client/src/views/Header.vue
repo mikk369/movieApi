@@ -2,17 +2,20 @@
   <div class="header">
     <nav>
       <h1 class="logo">WebShop</h1>
-    <h3>{{userEmail}}</h3>
-
+      <h3>Hello, {{ getUserName() }}</h3>
       <ul class="nav-links">
         <input id="input-field" type="text" placeholder="Search..." />
 
         <button class="submit-button" type="submit">Submit</button>
 
-        <li><router-link  to="/">Home</router-link></li>
-        <li><router-link v-if="isLogged" to="/addMovie">Add Movie</router-link></li>
+        <li><router-link to="/">Home</router-link></li>
         <li>
-          <router-link v-if="!isLogged" to="/login"><button>Login</button></router-link>
+          <router-link v-if="isLogged" to="/addMovie">Add Movie</router-link>
+        </li>
+        <li>
+          <router-link v-if="!isLogged" to="/login"
+            ><button>Login</button></router-link
+          >
         </li>
 
         <li>
@@ -29,35 +32,47 @@
 </template>
 
 <script>
-import axios from "axios"
 import '../assets/script.js';
 export default {
-  name: 'Header',  
+  name: 'Header',
+
   data() {
     return {
-      isLogged: this.checkIfAuthenticated()
-    }
+      isLogged: this.checkIfAuthenticated(),
+    };
   },
-  methods:{
-    // isLoggedIn() {
-    //   if(localStorage.getItem("token") === true){
-    //     console.log("Authorized");
-    //   }
-    // },
+  methods: {
     checkIfAuthenticated() {
-      let token = localStorage.getItem("token")
-      if(token) {
-        return true
-      }else {
-        return false
-      }      
+      let token = localStorage.getItem('token');
+      if (token) {
+        return true;
+      } else {
+        return false;
+      }
     },
-    loggedOut(){
-      localStorage.removeItem("token");
-      this.isLogged = this.checkIfAuthenticated()
-      this.$router.push("/login");
-      window.location.reload();
+    loggedOut() {
+      try {
+        let keysToRemove = ['token', 'user'];
+        keysToRemove.forEach((key) => {
+          localStorage.removeItem(key);
+        });
+        this.isLogged = this.checkIfAuthenticated();
+        this.$router.push('/login');
+        setTimeout(() => {
+          alert('You are logged out ');
+        }, 500);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } catch (err) {
+        alert(err.response.data.message);
+      }
     },
-  }
+    getUserName() {
+      let user = localStorage.getItem('user');
+      return user;
+      // console.log(user);
+    },
+  },
 };
 </script>
