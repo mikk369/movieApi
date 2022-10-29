@@ -26,7 +26,7 @@
     <form id="form" @submit.prevent="submitLogin">
       <h3 class="loginTag">Login</h3>
       <div class="emailInput">
-        <input id="email" type="text"  placeholder="Email" v-model="email" />
+        <input id="email" type="text" placeholder="Email" v-model="email" />
       </div>
 
       <div class="passwordInput">
@@ -38,10 +38,7 @@
         />
       </div>
 
-      <button 
-        class="inputSubmitButton btn btn-primary btn-block">
-        login
-      </button>
+      <button class="inputSubmitButton btn btn-primary btn-block">login</button>
     </form>
   </html>
 </template>
@@ -87,18 +84,27 @@ export default {
   },
   methods: {
     async submitLogin() {
-      
-      const response = await axios.post(
-        'http://localhost:8000/api/users/login',  
-        {
-          email: this.email,
-          password: this.password,
-        });
-        localStorage.setItem("token", response.data.token);
-        this.userEmail = response.data.data.user.email 
-        localStorage.setItem("user", response.data.user.email);
-        // console.log(userEmail)
-      this.$router.push("/");
+      try {
+        const response = await axios.post(
+          'http://localhost:8000/api/users/login',
+          {
+            email: this.email,
+            password: this.password,
+          }
+        );
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', response.data.data.user.email);
+        this.$router.push('/');
+        setTimeout(() => {
+          alert('You are logged in ');
+        }, 500);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } catch (err) {
+        //TODO: cant get proper err msg
+        return alert(err.response.data.message);
+      }
     },
   },
 };
