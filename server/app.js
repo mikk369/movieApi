@@ -11,6 +11,18 @@ const userRoutes = require('./routes/userRoutes');
 
 require('dotenv').config();
 
+const WebSocketServer = require("ws");
+const wss = new WebSocketServer.Server({ port: 6060 });
+wss.on("connection", function connection(ws) {
+  ws.on("message", function message(data, isBinary) {
+    wss.clients.forEach(function (client) {
+      if (client !== ws && client.readyState === WebSocketServer.OPEN) {
+        client.send(data, { binary: isBinary });
+      }
+    });
+  });
+});
+
 const port = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -34,6 +46,8 @@ console.log('DB connection successfull!');
 //Mounting routers on 2 routes
 app.use('/api/post', postRoutes);
 app.use('/api/users', userRoutes);
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
