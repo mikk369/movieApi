@@ -1,7 +1,44 @@
 'use strict';
-
 //this listens for DOM content loaded just in case
+export const socket = new WebSocket("ws://localhost:6060/");
 document.addEventListener('DOMContentLoaded', () => {
+
+//WS setup
+socket.onopen = function () {
+  console.log("WS Connection established at client side");
+  // socket.send("Client says: hello");
+};
+
+socket.onmessage = function (event) {
+  console.log(`WS Data received from server: ${event.data}`);
+};
+
+socket.onclose = function (event) {
+
+  if (event.wasClean) {
+
+    console.log(`WS Connection closed cleanly, code=${event.code} reason=${event.reason}`
+
+    );
+
+  } else {
+
+    // e.g. server process killed or network down
+
+    // event.code is usually 1006 in this case
+
+    console.log("WS Connection died");
+
+  }
+
+};
+
+socket.onerror = function (error) {
+
+  console.log(`WS error: ${error.message}`);
+
+};
+
   //apikey
   const apikey = '9f0ca0df';
   //search movies from API
@@ -51,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Error', error);
     }
   }
+
   //movies array from localstorage
   const movieArr = [];
   //gets items from localstorage and parses back to JSON 
@@ -97,11 +135,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const search = document.getElementById('input-field').value;
       //goto loadMovie function
       loadMovie(search);
+      const object = {
+        user: localStorage.getItem("user"),
+        search: search
+      }
+      
+      socket.send(JSON.stringify(object));
+
       //console log search term
       console.log('search', search);
     });
   }
-
+  
   //add search by ENTER key
   document.addEventListener('keydown', function (e) {
     // console.log(e.key);
@@ -109,4 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementsByClassName('submit-button').click();
     }
   });
+  socket.onmessage = function (event) {
+     const data = JSON.parse(event.data);
+     if(data.user === localStorage.getItem("user")){
+       console.log("JSON Message received: ", data);
+       loadMovie(data.search)
+     }
+     };
 });
