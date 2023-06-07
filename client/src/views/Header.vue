@@ -14,9 +14,7 @@
         </li>
 
         <li>
-          <router-link to="signUp"
-            ><button class="btn">Sign up</button></router-link
-          >
+          <router-link to="signUp"><button class="btn">Sign up</button></router-link>
         </li>
       </ul>
     </nav>
