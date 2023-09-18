@@ -5,16 +5,14 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link
         href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Lexend+Deca:wght@300;400&family=Montserrat:ital,wght@1,900&family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@500;900&display=swap"
-        rel="stylesheet"
-      />
+        rel="stylesheet" />
 
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
         crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-      />
+        referrerpolicy="no-referrer" />
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,28 +32,24 @@
               @submit.prevent="submitForm"
               ref="form"
               class="pa-5"
-              enctype="multipart/form-data"
-            >
+              enctype="multipart/form-data">
               <v-text-field
                 label="Title"
                 v-model="post.title"
                 prepend-icon="mdi-note"
-                :rules="rules"
-              ></v-text-field>
+                :rules="rules"></v-text-field>
 
               <v-text-field
                 label="Category"
                 v-model="post.category"
                 prepend-icon="mdi-view-list"
-                :rules="rules"
-              ></v-text-field>
+                :rules="rules"></v-text-field>
 
               <v-textarea
                 label="Content"
                 v-model="post.content"
                 prepend-icon="mdi-note-plus"
-                :rules="rules"
-              ></v-textarea>
+                :rules="rules"></v-textarea>
 
               <v-file-input
                 @change="selectFile"
@@ -63,8 +57,7 @@
                 show-size
                 counter
                 multiple
-                label="Select Image"
-              ></v-file-input>
+                label="Select Image"></v-file-input>
 
               <v-btn type="submit" class="mt-3" color="primary">Add Post</v-btn>
             </v-form>
@@ -124,17 +117,6 @@ export default {
         });
       }
     },
-    created: function() {
-      console.log("Submitting form");
-      this.submitForm = new WebSocket("wss://localhost:8080/addMovie")
-      this.submitForm.onopen = function(event) {
-        console.log(event)
-        console.log("Successfully connected to the echo websocket Server");
-      }
-      this.submitForm.onmessage = function (event) {
-        console.log(event)
-      }
-  },
   },
 };
 </script>
