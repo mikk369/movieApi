@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let response = await fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${search}`);
       //convert response
       let data = await response.json();
-      //clear old
-      document.getElementsByClassName('row').innerHTML = '';
+      //clear old search
+      document.getElementsByClassName('row')[0].innerHTML = '';
 
-      //loop over response
+      //loop over response and display new results
       data.Search?.forEach((movie) => {
         //create a div
         const movieContainer = document.createElement('div');
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="lower-card">
               <h4 class="movie-name"><b>${movie.Title}</b></h4>
                 <p class="year">${movie.Year}</p>
+                <button class="like-button" data-movie="${JSON.stringify(movie)}">Like</button>
               </div>
             </div> `;
 
