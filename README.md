@@ -28,6 +28,6 @@ add movies, delete movies, update movies, search movies.
 
 `````
 
-````Split terminal and run "npm run serve" to start client side
-  and "npm run dev" to run server.```
-````
+```Split terminal and run "npm run serve" to start client side
+  and "npm run dev" to run server.
+```
