@@ -37,3 +37,5 @@ add movies, delete movies, update movies, search movies.
   and other for user added and third for movie search.
 
 - Problems , page needs to be refreshed sometimes to load the movies from array
+
+- When refreshing the previous movie array is displayed
