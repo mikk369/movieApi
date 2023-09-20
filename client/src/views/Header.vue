@@ -7,8 +7,9 @@
 
         <button class="submit-button" type="submit">Submit</button>
 
-        <li><router-link to="/">Home</router-link></li>
+        <li><router-link :to="{ name: 'Home' }" @click="refreshPage">Home</router-link></li>
         <li v-if="isLoggedIn"><router-link to="/addMovie">Add Movie</router-link></li>
+
         <li v-if="!isLoggedIn">
           <router-link to="/login"><button>Login</button></router-link>
         </li>
@@ -42,6 +43,10 @@ export default {
       localStorage.removeItem('token');
       console.log('logged out');
       // Redirect the user to the login page or any other appropriate page
+      this.$router.go(0);
+    },
+    refreshPage() {
+      // Use window.location.reload() to refresh the page
       this.$router.go(0);
     },
   },
