@@ -115,6 +115,7 @@ export default {
           name: 'Home',
           params: { message: response.message },
         });
+        window.location.reload();
       }
     },
   },
