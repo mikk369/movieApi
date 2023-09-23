@@ -21,10 +21,9 @@
     </head>
 
     <Header></Header>
-
     <v-container>
-      <v-row no-gutters>
-        <v-col sm="5" class="mx-auto">
+      <row class="edit-row">
+        <v-col class="mx-auto d-flex justify-center">
           <v-card class="pa-5">
             <v-card-title>Edit Post</v-card-title>
             <v-divider></v-divider>
@@ -55,11 +54,11 @@
                 multiple
                 label="Select Image"></v-file-input>
               <v-img width="210px" :src="`/${post.image}`"></v-img>
-              <v-btn type="submit" class="mt-3" color="success">Update Post</v-btn>
+              <v-btn type="submit" class="btn-edit" color="success">Update Post</v-btn>
             </v-form>
           </v-card>
         </v-col>
-      </v-row>
+      </row>
     </v-container>
   </html>
 </template>
@@ -68,6 +67,19 @@
 .theme--light.v-btn.v-btn--has-bg {
   background-color: rgb(6, 148, 18);
   margin-bottom: 4px;
+}
+.container {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+.edit-row {
+  display: flex;
+  justify-content: center;
+}
+.btn-edit {
+  margin-top: 3px;
 }
 </style>
 
