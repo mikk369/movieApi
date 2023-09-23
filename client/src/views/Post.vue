@@ -26,10 +26,7 @@
             <v-img max-height="600px" max-width="900px" :src="`/${post.image}`"></v-img>
             <v-card-actions class="pb-0">
               <v-row class="mt-1 mx-1">
-                <v-col sm="2">
-                  <v-btn small outlined color="primary">{{ post.category }}</v-btn>
-                </v-col>
-                <v-col sm="10" class="d-flex justify-end">
+                <v-col class="d-flex justify-end">
                   <v-btn color="success" text :to="{ name: 'edit-post', params: { id: id } }"
                     >Edit</v-btn
                   >
