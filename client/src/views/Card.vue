@@ -152,4 +152,8 @@ p {
 .liked {
   color: red;
 }
+.row {
+  margin-top: 50px;
+  justify-content: center;
+}
 </style>
