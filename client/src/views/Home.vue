@@ -69,7 +69,6 @@
 </style>
 
 <script>
-import { eventBus } from '../main.js';
 import Header from './Header.vue';
 import Card from './Card.vue';
 import API from '../api';
@@ -85,44 +84,7 @@ export default {
       socket: null,
     };
   },
-
   async created() {
-    // Create a WebSocket connection
-    this.socket = new WebSocket('ws://localhost:8000');
-
-    // Add event listeners for WebSocket events
-    this.socket.addEventListener('open', () => {
-      console.log('WebSocket connection opened');
-    });
-
-    this.socket.addEventListener('message', (event) => {
-      // Check if the message is valid JSON
-      let data;
-      try {
-        data = JSON.parse(event.data);
-        console.log(data);
-      } catch (error) {
-        console.error('Received non-JSON message:', event.data);
-        return;
-      }
-      console.log('recived message', data);
-      if (data.type === 'deletePost') {
-        // Handle the 'deletedPost' message
-        const { postId } = data;
-
-        // Find the index of the deleted post in the 'posts' array
-        const deletedIndex = this.posts.findIndex((post) => post._id === postId);
-
-        // If the post is found, remove it from the 'posts' array
-        if (deletedIndex !== -1) {
-          this.posts.splice(deletedIndex, 1);
-        }
-      }
-    });
-
-    this.socket.addEventListener('close', () => {
-      console.log('WebSocket connection closed');
-    });
     const storedMovies = JSON.parse(localStorage.getItem('movies'));
     if (storedMovies && Array.isArray(storedMovies)) {
       // If movies exist in localStorage and are in the correct format
@@ -132,13 +94,6 @@ export default {
     this.posts = await API.getAllPosts();
   },
   methods: {
-    // sendLikedMovie(movie) {
-    //   const message = {
-    //     type: 'likedMovies',
-    //     movie,
-    //   };
-    //   this.socket.send(JSON.stringify(message));
-    // },
     likeMovie(movie) {
       // Check if the movie is already liked using _id
       const index = this.likedMovies.findIndex((likedMovie) => likedMovie.imdbID === movie.imdbID);
