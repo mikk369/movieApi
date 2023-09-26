@@ -95,7 +95,7 @@ export default {
         content: '',
         image: '',
       },
-      image: '',
+      // image: '',
     };
   },
   created() {
