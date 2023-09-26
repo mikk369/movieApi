@@ -7,12 +7,12 @@
 </style>
 
 <script>
-  import Header from "./views/Header.vue"
-  
+import Header from './views/Header.vue';
+
 export default {
   name: 'App',
   components: {
-    Header
-  }
+    Header,
+  },
 };
 </script>

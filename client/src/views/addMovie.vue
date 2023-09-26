@@ -98,18 +98,27 @@ export default {
       image: '',
     };
   },
+  created() {
+    // Create a WebSocket connection to your server
+    this.socket = new WebSocket('ws://localhost:8000'); // Replace with your server URL
+    this.socket.addEventListener('open', () => {
+      console.log('WebSocket connection established.');
+    });
+  },
+
   methods: {
     selectFile(file) {
-      this.image = file[0];
+      this.post.image = file[0];
     },
     async submitForm() {
       const formData = new FormData();
-      formData.append('image', this.image);
+      formData.append('image', this.post.image);
       formData.append('title', this.post.title);
       formData.append('category', this.post.category);
       formData.append('content', this.post.content);
-      //TODO: HERE
       if (this.$refs.form.validate()) {
+        // Send a WebSocket message to notify the server and other clients
+        this.socket.send(JSON.stringify({ type: 'newMovie', movie: this.post }));
         const response = await API.addPost(formData);
         this.$router.push({
           name: 'Home',

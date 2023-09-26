@@ -60,9 +60,33 @@ export default {
     if (likedMoviesData) {
       this.likedMovies = JSON.parse(likedMoviesData);
     }
+    // Create a WebSocket connection
+    this.socket = new WebSocket('ws://localhost:8000');
+
+    this.socket.addEventListener('message', (event) => {
+      // Check if the message is valid JSON
+      let data;
+      try {
+        data = JSON.parse(event.data);
+      } catch (error) {
+        console.error('Received non-JSON message:', event.data);
+        return;
+      }
+
+      if (data.type === 'newMovie') {
+        // Handle new movie received via WebSocket
+        this.handleNewMovie(data.movie);
+        console.log(data.movie);
+      }
+    });
   },
   methods: {
-    likeMovie(movie) {
+    // Add this method to handle new movies received via WebSocket
+    handleNewMovie(movie) {
+      // Push the new movie into the posts array
+      this.posts.push(movie);
+    },
+    async likeMovie(movie) {
       // Check if the movie is already liked using _id
       const index = this.likedMovies.findIndex((likedMovie) => likedMovie._id === movie._id);
 
@@ -79,6 +103,11 @@ export default {
 
       // Update the like status of the movie
       movie.likeStatus = index === -1 ? 'liked' : '';
+
+      // Send a WebSocket message to notify other clients about the like/unlike
+      this.socket.send(
+        JSON.stringify({ type: 'likedMovies', movieId: movie._id, isLiked: index === -1 })
+      );
     },
     isMovieLiked(movie) {
       // Check if the movie is liked

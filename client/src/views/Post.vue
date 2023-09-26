@@ -58,6 +58,11 @@ export default {
     };
   },
   async created() {
+    // Create a WebSocket connection to your server
+    this.socket = new WebSocket('ws://localhost:8000'); // Replace with your server URL
+    this.socket.addEventListener('open', () => {
+      console.log('WebSocket connection established.');
+    });
     const response = await API.getPostByID(this.$route.params.id);
     this.post = response;
     this.id = response._id;
@@ -65,6 +70,7 @@ export default {
   methods: {
     async removePost(id) {
       const response = await API.deletePost(id);
+      this.socket.send(JSON.stringify({ type: 'deletePost', postId: id }));
       this.$router.push({
         name: 'Home',
         params: { message: response.message },
