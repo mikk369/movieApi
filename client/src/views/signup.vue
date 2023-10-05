@@ -65,6 +65,10 @@ h1 {
   position: absolute;
   left: 42%;
 }
+input{
+  color: #fff;
+
+}
 .pw1 {
   position: absolute;
   left: 42%;
