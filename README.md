@@ -87,3 +87,5 @@ need to add the username, password and connection string to .env file
 copy the connection string to .env file
 
 mongodb+srv://USERNAME:PASSWORD@cluster0.waoutjh.mongodb.net/DATABASENAME?retryWrites=true&w=majority
+
+your DATABASE name has to be before the ? sign
