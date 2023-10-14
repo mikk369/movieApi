@@ -60,12 +60,30 @@ After your cluster is created, click on the "CONNECT" button.
 
 Under "Connect to your application" choose Drivers
 
-need to add the username, password and connection string to .env file
-
-copy the connection string to .env file
-
-back to browser and choose you cluster in browser and click Connect , choose COMPASS
+choose you cluster in browser and click Connect , choose COMPASS
 
 download compass to your computer, copy the connection string
 
 Click new connection from left top side, and copy your connection string
+
+mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.waoutjh.mongodb.net/
+
+string should look like this and replace the fields with your data, click connect
+
+from top side choose Databases and create database:
+
+![Alt text](image-1.png)
+
+add your database name and first collection name posts
+
+next click the + sign to create collection:
+
+![Alt text](image.png)
+
+collection name: users
+
+need to add the username, password and connection string to .env file
+
+copy the connection string to .env file
+
+mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.waoutjh.mongodb.net/<DATABASENAME>?retryWrites=true&w=majority
