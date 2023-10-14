@@ -66,7 +66,7 @@ download compass to your computer, copy the connection string
 
 Click new connection from left top side, and copy your connection string
 
-mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.waoutjh.mongodb.net/
+mongodb+srv://USERNAME:PASSWORD@cluster0.waoutjh.mongodb.net/
 
 string should look like this and replace the fields with your data, click connect
 
@@ -86,4 +86,4 @@ need to add the username, password and connection string to .env file
 
 copy the connection string to .env file
 
-mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.waoutjh.mongodb.net/<DATABASENAME>?retryWrites=true&w=majority
+mongodb+srv://USERNAME:PASSWORD@cluster0.waoutjh.mongodb.net/DATABASENAME?retryWrites=true&w=majority
