@@ -60,8 +60,12 @@ After your cluster is created, click on the "CONNECT" button.
 
 Under "Connect to your application" choose Drivers
 
-Driver: Node.js version: 5.5 or later
-
 need to add the username, password and connection string to .env file
 
-follow the instructions from there.
+copy the connection string to .env file
+
+back to browser and choose you cluster in browser and click Connect , choose COMPASS
+
+download compass to your computer, copy the connection string
+
+Click new connection from left top side, and copy your connection string
