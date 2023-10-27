@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 //token function so dont have to repeat code
-const signToken = (id, username) => {
-  return jwt.sign({ id, username }, process.env.JWT_SECRET, {
+const signToken = (id, email) => {
+  return jwt.sign({ id, email }, process.env.JWT_SECRET, {
     expiresIn: 1 * 24 * 60 * 60 * 1000,
   });
 };
@@ -24,7 +24,7 @@ exports.signup = async (req, res, next) => {
           password: password,
         });
         //token
-        const token = signToken(createUser._id);
+        const token = signToken(createUser._id, email);
 
         await User.create(createUser);
         res.status(201).json({
@@ -65,7 +65,7 @@ exports.login = async (req, res, next) => {
       );
     }
     //if everything ok ,send token to client
-    const token = signToken(user._id);
+    const token = signToken(user._id, email);
     //  put token into cookie
     res.cookie('jwt', token, {
       expires: new Date(

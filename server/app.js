@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 let DB = process.env.MONGO_CONNECTION_STRING.replace('<password>', encodeURIComponent(process.env.MONGO_PASSWORD))
 
 // Inject database name into the connection string between the / and ? characters, encoded as a URI component
-DB = DB.replace('<dbname>', encodeURIComponent(process.env.MONGO_DATABASE_NAME))
+DB = DB.replace('/?', '/'+encodeURIComponent(process.env.MONGO_DB_NAME)+'?');
 
 mongoose.connect(DB, {
     useNewUrlParser: true
