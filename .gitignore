@@ -1,2 +1,13 @@
 node_modules
 .env
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/movieApi.iml
+/.idea/php.xml
+/.idea/vcs.xml
+/server/.idea/inspectionProfiles/Project_Default.xml
+/server/.idea/modules.xml
+/server/.idea/server.iml
+/server/.idea/vcs.xml
+/server/.idea/workspace.xml

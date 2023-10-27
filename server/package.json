@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "postinstall": "if not exist .env (copy .env.example .env && node -e \"require('crypto').randomBytes(48, (err, buffer) => { if (err) throw err; require('fs').appendFileSync('.env', `\\nJWT_SECRET=${buffer.toString('hex')}`); });\")"
+    "postinstall": "node setup.js"
   },
   "keywords": [],
   "author": "",
