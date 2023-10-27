@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "postinstall": "if [ ! -f .env ]; then cp .env.example .env && sed -i '' 's|JWT_SECRET=|JWT_SECRET='$(openssl rand -base64 32)'|' .env; fi"
   },
   "keywords": [],
   "author": "",
