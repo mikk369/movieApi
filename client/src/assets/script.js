@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         likeButton.addEventListener('click', () => {
           const movieDataString = likeButton.getAttribute('data-movie');
           const movieData = movieDataString;
-          console.log(movieData);
           // Get existing apiLikedMovies from local storage or initialize as an empty array
           let apiLikedMovies = JSON.parse(localStorage.getItem('apiLikedMovies')) || [];
           // Check if the movie is already in the apiLikedMovies
@@ -139,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //add search by ENTER key
   document.addEventListener('keydown', function (e) {
-    // console.log(e.key);
     if (e.key === 'Enter') {
       document.getElementsByClassName('submit-button').click();
     }
