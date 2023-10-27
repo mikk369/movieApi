@@ -11,3 +11,4 @@ node_modules
 /server/.idea/server.iml
 /server/.idea/vcs.xml
 /server/.idea/workspace.xml
+/.idea/jsLibraryMappings.xml

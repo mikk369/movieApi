@@ -2,15 +2,9 @@
 
 This is a simple movie database app built with Vue.js and Node.js. It allows users to search for movies and add them to their watchlist. Users can also add their own movies to the database.
 
+# Initial Setup
 
-
-## How to start
-
-- Split the terminal, `cd` one terminal to `client/` and the other to `server/`
-- Run `npm i` in each directory to download dependencies
-- In client side `npm run serve` and in server `npm run dev`
-
-## How to Set Up and Connect to a MongoDB Database
+## Set up MongoDB Atlas
 
 ### Step 1: Create a MongoDB Account
 1. Visit the MongoDB website: [https://www.mongodb.com/](https://www.mongodb.com/).
@@ -30,18 +24,20 @@ This is a simple movie database app built with Vue.js and Node.js. It allows use
 ### Step 3: Obtain Your Database Connection String
 1. Once your cluster is ready, click the `CONNECT` button.
 2. In the `Connect to your application` section, choose `Drivers.`
-3. Select your cluster and then click on `COMPASS` for a visual interface.
-4. Download and install MongoDB Compass, which will help you visualize and manage your databases.
-5. In Compass, click on `New Connection` and paste the connection string provided by Atlas, which will be in the format: `mongodb+srv://USERNAME:PASSWORD@cluster0.waojuth.mongodb.net/`
-6. Replace `USERNAME` and `PASSWORD` with your cluster's username and password, then click `Connect.`
-7. Once connected, click on `Databases` and then `Create database.`
+3. Copy the connection string and paste it to server/.env. You don't need to replace the `<PASSWORD>` placeholder.
 
-### Step 4: Create Your First Database Collection
-1. Name your database and create your first collection called `posts.`
-2. To add another collection, click the `+` sign and name the new collection `users.`
 
-### Step 5: Update .env File
-1. Copy the connection string provided by MongoDB Atlas.
-2. The connection string will look like this: `mongodb+srv://USERNAME:PASSWORD@cluster0.waojuth.mongodb.net/DATABASENAME?retryWrites=true&w=majority`
-3. Make sure to replace `USERNAME,` `PASSWORD,` and `DATABASENAME` with your actual details.
-4. Add this connection string to your `.env` file, ensuring the `DATABASENAME` is positioned before the `?` in the string.
+## Set up the terminal and install dependencies
+1. Split the terminal: `cd` one terminal to `client/` and the other to `server/`.
+2. Run `npm i` in each directory to install the dependencies.
+
+## Fill in the .env file
+1. After the dependencies are installed, locate and open the `.env` file in `server/`. 
+2. Update it by copying the connection string provided by MongoDB Atlas to MONGO_CONNECTION_STRING
+3. Get your MongoDB user's password from under Security and Database Access in MongoDB Atlas and paste it to MONGO_PASSWORD
+4. Invent a name to your database and paste it to MONGO_DB_NAME
+
+# Running the app
+1. In the client directory, run `npm run serve`.
+2. In the server directory, run `npm run dev`.
+3. Open [http://localhost:8080/](http://localhost:8080/) in your browser.
